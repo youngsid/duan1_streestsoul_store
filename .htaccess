@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /streestsoul_store1/
+
+RewriteRule ^$ index.php [L]
+RewriteRule ^product/([0-9]+)$ view/client/productDetail.php?id=$1 [L,QSA]
+RewriteRule ^cart$ view/client/cart.php [L,QSA]
+RewriteRule ^admin/orders$ view/admin/order.php [L,QSA]
