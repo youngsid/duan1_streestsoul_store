@@ -7,7 +7,7 @@
 </head>
 <body>
     <header>
-        <img src="../../public/logo.png" alt="StreetSoul Logo" class="logo">
+    <!-- <img src="public/images/LOGO.jpg" alt="StreetSoul Logo" class="logo"> -->
         <h1>StreetSoul Store</h1>
         <nav>
             <a href="../../index.php">Trang chủ</a>

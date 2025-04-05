@@ -20,52 +20,51 @@ foreach ($allProducts as $product) {
 ?>
 
 <div class="banner">
+<img src="public/images/banner.jpg" alt="StreetSoul Logo" class="logo">
     <h2>StreetSoul Collection</h2>
 </div>
+
 
 <!-- Hiển thị sản phẩm nổi bật -->
 <div class="container">
     <h2>Sản phẩm nổi bật</h2>
     <div class="product-list">
         <?php foreach (array_slice($featuredProducts, 0, 4) as $product): ?>
-            <div class="product featured">
-            <img src="/streestsoul_store1/public/images/<?php echo htmlspecialchars($product['image']); ?>" 
-                alt="<?php echo htmlspecialchars($product['name']); ?>">
-                <h3><?php echo htmlspecialchars($product['name']); ?></h3>
-                <p><?php echo number_format($product['price']); ?> VNĐ</p>
-                <a href="/streestsoul_store1/view/client/productDetail.php?id=<?php echo $product['id']; ?>">Xem chi tiết</a>
-                <form method="POST" action="cart.php">
-                    <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
-                    <input type="hidden" name="name" value="<?php echo $product['name']; ?>">
-                    <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
-                    <button type="submit">Thêm vào giỏ hàng</button>
-                </form>
+            <div class="product">
+                <a href="/streestsoul_store1/view/client/productDetail.php?id=<?php echo $product['id']; ?>">
+                    <img src="/streestsoul_store1/public/images/<?php echo htmlspecialchars($product['image']); ?>" 
+                        alt="<?php echo htmlspecialchars($product['name']); ?>">
+                    <h3><?php echo htmlspecialchars($product['name']); ?></h3>
+                    <p class="price"><?php echo number_format($product['price']); ?> VNĐ</p>
+                </a>
             </div>
         <?php endforeach; ?>
     </div>
 </div>
+
 
 
 <!-- Hiển thị sản phẩm hot giảm giá -->
 <div class="container">
-    <h2>Sản phẩm hot giảm giá</h2>
+    <h2>Sản phẩm giá ưu đãi</h2>
     <div class="product-list">
         <?php foreach (array_slice($hotSaleProducts, 0, 4) as $product): ?>
-            <div class="product hot-sale">
-            <img src="/streestsoul_store1/public/images/<?php echo htmlspecialchars($product['image']); ?>" 
-                alt="<?php echo htmlspecialchars($product['name']); ?>">
-                <h3><?php echo htmlspecialchars($product['name']); ?></h3>
-                <p><?php echo number_format($product['price']); ?> VNĐ</p>
-                <a href="/streestsoul_store1/view/client/productDetail.php?id=<?php echo $product['id']; ?>">Xem chi tiết</a>
-                <form method="POST" action="cart.php">
-                    <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
-                    <input type="hidden" name="name" value="<?php echo $product['name']; ?>">
-                    <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
-                    <button type="submit">Thêm vào giỏ hàng</button>
-                </form>
+            <div class="product">
+                <a href="/streestsoul_store1/view/client/productDetail.php?id=<?php echo $product['id']; ?>">
+                    <img src="/streestsoul_store1/public/images/<?php echo htmlspecialchars($product['image']); ?>" 
+                        alt="<?php echo htmlspecialchars($product['name']); ?>">
+                    <h3><?php echo htmlspecialchars($product['name']); ?></h3>
+                    <p class="original-price" style="text-decoration: line-through; color: #999;">
+                        <?php echo number_format($product['price']); ?> VNĐ
+                    </p>
+                    <p class="discounted-price" style="color: #ff6600; font-weight: bold;">
+                        <?php echo number_format($product['price'] * 0.9); ?> VNĐ
+                    </p>
+                </a>
             </div>
         <?php endforeach; ?>
     </div>
 </div>
+
 
 <?php include __DIR__ . "/../layout/footer.php"; ?>
