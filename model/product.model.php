@@ -1,28 +1,114 @@
-<!-- hai -->
 <?php
 include_once __DIR__ . "/../config/db.php";
 
 class Product {
-    private $db;
+    private $conn;
+
     public function __construct() {
-        $this->db = new Database();
+        $db = new Database();
+        $this->conn = $db->conn;
     }
 
+    /**
+     * Lấy tất cả sản phẩm
+     * @return array
+     */
     public function getAllProducts() {
         $query = "SELECT * FROM products";
-        $result = $this->db->conn->query($query);
-        
-        $products = []; // Tạo mảng chứa sản phẩm
-        while ($row = $result->fetch_assoc()) {
-            $products[] = $row; // Lưu từng sản phẩm vào mảng
+        $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            return [];
         }
-        
-        return $products; // Trả về toàn bộ danh sách sản phẩm
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $products[] = $row;
+        }
+
+        return $products;
     }
-    
+
+    /**
+     * Lấy sản phẩm theo ID
+     * @param int $id
+     * @return array|null
+     */
     public function getProductById($id) {
-        $query = "SELECT * FROM products WHERE id = $id";
-        return $this->db->conn->query($query)->fetch_assoc();
+        $query = "SELECT * FROM products WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            return null;
+        }
+
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
+    }
+
+    /**
+     * Lấy sản phẩm ngẫu nhiên (trừ sản phẩm hiện tại nếu có)
+     * @param int $limit
+     * @param int|null $excludeId
+     * @return array
+     */
+    public function getRandomProducts($limit = 4, $excludeId = null) {
+        if ($excludeId !== null) {
+            $query = "SELECT * FROM products WHERE id != ? ORDER BY RAND() LIMIT ?";
+            $stmt = $this->conn->prepare($query);
+
+            if (!$stmt) return [];
+
+            $stmt->bind_param("ii", $excludeId, $limit);
+        } else {
+            $query = "SELECT * FROM products ORDER BY RAND() LIMIT ?";
+            $stmt = $this->conn->prepare($query);
+
+            if (!$stmt) return [];
+
+            $stmt->bind_param("i", $limit);
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $products[] = $row;
+        }
+
+        return $products;
+    }
+
+    /**
+     * Lấy sản phẩm theo danh mục
+     * @param int $categoryId
+     * @return array
+     */
+    public function getProductsByCategory($categoryId) {
+        $query = "SELECT * FROM products WHERE category_id = ?";
+        $stmt = $this->conn->prepare($query);
+
+        if (!$stmt) {
+            return [];
+        }
+
+        $stmt->bind_param("i", $categoryId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $products = [];
+        while ($row = $result->fetch_assoc()) {
+            $products[] = $row;
+        }
+
+        return $products;
     }
 }
 ?>

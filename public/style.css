@@ -1,43 +1,110 @@
-/* Đặt màu nền tối */
+/* === 1. CÀI ĐẶT CƠ BẢN === */
 body {
-    background-color: white; /* Màu đen xám */
-    color: black; /* Màu chữ trắng xám */
+    background-color: white;
+    color: black;
     font-family: Arial, sans-serif;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
-/* Header */
+/* === 2. LAYOUT TỔNG THỂ === */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* === 3. HEADER === */
 header {
-    background-color: #252525;
-    margin: 0px;
-    padding: 10px;
+    background-color: #ffffff;
+    padding: 10px 0;
     box-sizing: border-box;
-    text-align: center;
 }
-
-/* Logo */
-/* .logo {
-    height: 50px; 
-    margin-right: 100px; 
-} */
 
 header h1 {
-    color: #ffffff; /* Màu vàng nổi bật */
+    text-align: center;
+    color: #000000;
+    margin-bottom: 10px;
+    font-size: 28px;
 }
 
-nav a {
-    color: #e0e0e0;
-    margin: 0 15px;
+/* === 4. NAVIGATION === */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Nav trái */
+.nav-left a {
+    color: #000000;
+    margin-right: 20px;
     text-decoration: none;
     font-weight: bold;
+    font-size: 16px;
 }
 
-nav a:hover {
-    color: #ffcc00; /* Đổi màu khi di chuột */
+.nav-left a:hover {
+    color: #be7500;
 }
 
-/* Banner */
+/* Nav phải */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-right a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-right a:hover {
+    color: #ffcc00;
+}
+
+/* Icon giỏ hàng */
+.cart-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cart-icon i {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.cart-icon span {
+    color: red;
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+/* Nút đăng nhập */
+.login-btn {
+    background-color: #ff6600;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.login-btn:hover {
+    background-color: #e55d00;
+}
+
+/* === 5. BANNER === */
 .banner {
     position: relative;
     width: 100%;
@@ -65,11 +132,12 @@ nav a:hover {
     border-radius: 10px;
 }
 
-
+/* === 6. DANH SÁCH SẢN PHẨM === */
 .product-list {
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .product {
@@ -80,6 +148,7 @@ nav a:hover {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
 }
 
 .product:hover {
@@ -104,7 +173,7 @@ nav a:hover {
     transition: text-decoration 0.2s ease;
 }
 
-.product h3:hover { 
+.product h3:hover {
     text-decoration: underline;
 }
 
@@ -113,31 +182,46 @@ nav a:hover {
     color: #7f7d7d;
 }
 
-/* chi tiết sản phẩm */
+/* === 7. TRANG CHI TIẾT SẢN PHẨM === */
 .product-detail-container {
     display: flex;
-    gap: 20px;
+    gap: 30px;
+    padding: 30px 20px;
     justify-content: center;
     align-items: flex-start;
-    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
 }
 
-/* Phần hình ảnh sản phẩm */
+/* Hình ảnh sản phẩm */
 .product-image {
-    max-width: 50%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    flex: 1 1 55%;
 }
 
-.product-image img {
+.product-image img#mainImage {
     width: 100%;
-    height: auto;
-    max-width: 250px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Thông tin sản phẩm */
+.product-info {
+    flex: 1 1 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .product-info h2 {
-    font-size: 24px;
+    font-size: 26px;
     margin-bottom: 10px;
 }
 
@@ -148,7 +232,7 @@ nav a:hover {
 }
 
 .discounted-price {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     color: #ff6600;
 }
@@ -156,47 +240,65 @@ nav a:hover {
 .description {
     font-size: 16px;
     color: #555;
-    margin-bottom: 20px;
 }
 
-/* Phần voucher giảm giá */
-.voucher-section {
+/* === 8. THUMBNAIL === */
+.thumbnail-container {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 20px;
 }
 
-.voucher-section input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.voucher-section button {
-    background-color: #ff6600;
-    color: #fff;
-    padding: 8px 12px;
-    border: none;
-    font-size: 16px;
-    border-radius: 5px;
+.thumbnail-container img.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: transform 0.2s ease;
 }
 
-.voucher-section button:hover {
-    background-color: #e55d00;
+.thumbnail-container img.thumbnail:hover {
+    transform: scale(1.05);
+    border-color: #ff6600;
 }
 
-/* Căn chỉnh nút giỏ hàng */
+/* === 9. BẢNG GIAO HÀNG === */
+.shipping-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.shipping-table th,
+.shipping-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.shipping-table th {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.out-of-stock {
+    color: red;
+}
+
+/* === 10. NÚT MUA VÀ GIỎ HÀNG === */
 .buttons {
     display: flex;
     gap: 15px;
-    justify-content: center;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
-/* Nút thêm vào giỏ hàng */
-.buttons form button {
+.buttons form button,
+.buy-now {
     background-color: #ff6600;
     color: white;
     padding: 12px 20px;
@@ -204,41 +306,42 @@ nav a:hover {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-/* Hiệu ứng khi hover vào nút */
-.buttons form button:hover {
+.buttons form button:hover,
+.buy-now:hover {
     background-color: #e55d00;
     transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Nút mua ngay */
 .buy-now {
     background-color: #d04a00;
-    color: white;
-    padding: 12px 20px;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
 }
 
-/* Hiệu ứng hover cho nút mua ngay */
 .buy-now:hover {
     background-color: #b84000;
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-
-
-/* Footer */
+/* === 11. FOOTER === */
 footer {
     background-color: #252525;
     color: white;
     padding: 15px;
     text-align: center;
+}
+
+/* === 12. RESPONSIVE === */
+@media (max-width: 768px) {
+    .product-detail-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-image,
+    .product-info {
+        width: 100%;
+        flex: 1 1 100%;
+    }
 }

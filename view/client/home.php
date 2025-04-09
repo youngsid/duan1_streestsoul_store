@@ -16,7 +16,7 @@ foreach ($allProducts as $product) {
     }
 }
 ?>
-
+<!-- banenr -->
 <div class="banner">
     <img src="public/images/banner.jpg" alt="StreetSoul Banner" class="logo">
     <h2>StreetSoul Collection</h2>
