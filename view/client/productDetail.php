@@ -25,11 +25,16 @@ if (!$product) {
 include_once __DIR__ . "/../layout/header.php";
 
 $originalPrice = $product['price'];
-$discountRate = 0.10;
-$discountedPrice = $originalPrice * (1 - $discountRate);
-$product['gallery'] = !empty($product['gallery']) ? json_decode($product['gallery'], true) : [];
+$isHotSale = !empty($product['is_hot_sale']);
 
-// Lấy 4 sản phẩm khác
+if ($isHotSale) {
+    $discountRate = 0.10;
+    $discountedPrice = $originalPrice * (1 - $discountRate);
+} else {
+    $discountedPrice = $originalPrice;
+}
+
+$product['gallery'] = !empty($product['gallery']) ? json_decode($product['gallery'], true) : [];
 $otherProducts = $productModel->getRandomProducts(4, $product['id']);
 ?>
 
@@ -43,12 +48,10 @@ $otherProducts = $productModel->getRandomProducts(4, $product['id']);
 </head>
 <body>
 
-<!-- Banner -->
 <div class="home-banner">
     <img src="/streestsoul_store1/public/images/banner.jpg" alt="Banner Sản phẩm">
 </div>
 
-<!-- Sản phẩm thumbnail -->
 <div class="container product-detail-container">
     <div class="product-image">
         <img id="mainImage" src="/streestsoul_store1/public/images/<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
@@ -61,8 +64,19 @@ $otherProducts = $productModel->getRandomProducts(4, $product['id']);
 
     <div class="product-info">
         <h2><?php echo htmlspecialchars($product['name']); ?></h2>
-        <p class="original-price"><?php echo number_format($originalPrice); ?> VNĐ</p>
-        <p class="discounted-price" id="discountedPrice"><?php echo number_format($discountedPrice); ?> VNĐ</p>
+
+        <?php if ($isHotSale): ?>
+            <p class="original-price" style="text-decoration: line-through; color: #999;">
+                <?php echo number_format($originalPrice); ?> VNĐ
+            </p>
+            <p class="discounted-price" id="discountedPrice" style="color: #ff6600; font-weight: bold;">
+                <?php echo number_format($discountedPrice); ?> VNĐ
+            </p>
+        <?php else: ?>
+            <p class="price" id="discountedPrice" style="font-weight: bold;">
+                <?php echo number_format($originalPrice); ?> VNĐ
+            </p>
+        <?php endif; ?>
 
         <div class="shipping-table">
             <h3>Khu vực giao hàng</h3>
@@ -77,11 +91,10 @@ $otherProducts = $productModel->getRandomProducts(4, $product['id']);
         <div class="description">
             <h3>Mô tả sản phẩm</h3>
             <p>Đây là một chiếc áo thun cotton cao cấp,
-                 thoáng mát, thích hợp cho mọi thời tiết.
-                 Thiết kế trẻ trung, dễ phối đồ.
+               thoáng mát, thích hợp cho mọi thời tiết.
+               Thiết kế trẻ trung, dễ phối đồ.
             </p>
         </div>
-
 
         <div class="voucher-section">
             <input type="text" id="voucherCode" placeholder="Nhập mã giảm giá">
@@ -89,26 +102,47 @@ $otherProducts = $productModel->getRandomProducts(4, $product['id']);
         </div>
 
         <div class="buttons">
-            <button id="addToCartBtn" data-id="<?= $product['id'] ?>" data-name="<?= htmlspecialchars($product['name']) ?>" data-price="<?= $discountedPrice ?>">Thêm vào giỏ hàng</button>
+            <button id="addToCartBtn"
+                    data-id="<?= $product['id'] ?>"
+                    data-name="<?= htmlspecialchars($product['name']) ?>"
+                    data-price="<?= $discountedPrice ?>">
+                Thêm vào giỏ hàng
+            </button>
             <button class="buy-now">Mua ngay</button>
         </div>
     </div>
 </div>
 
-<!-- Sản phẩm khác -->
 <div class="container related-products">
     <h3>Các sản phẩm khác</h3>
     <div class="product-list">
-        <?php foreach ($otherProducts as $item): ?>
-            <div class="product">
-                <a href="productDetail.php?id=<?= $item['id'] ?>">
-                    <img src="/streestsoul_store1/public/images/<?= $item['image'] ?>" alt="<?= htmlspecialchars($item['name']) ?>">
-                    <h3><?= htmlspecialchars($item['name']) ?></h3>
-                    <p class="price"><?= number_format($item['price']) ?> VNĐ</p>
-                </a>
-            </div>
-        <?php endforeach; ?>
-    </div>
+    <?php foreach ($otherProducts as $item): ?>
+        <?php
+            $isItemHotSale = !empty($item['is_hot_sale']);
+            $itemOriginalPrice = $item['price'];
+            $itemDiscountedPrice = $isItemHotSale ? $itemOriginalPrice * 0.9 : $itemOriginalPrice;
+        ?>
+        <div class="product">
+            <a href="productDetail.php?id=<?= $item['id'] ?>">
+                <img src="/streestsoul_store1/public/images/<?= $item['image'] ?>" alt="<?= htmlspecialchars($item['name']) ?>">
+                <h3><?= htmlspecialchars($item['name']) ?></h3>
+                <?php if ($isItemHotSale): ?>
+                    <p class="original-price" style="text-decoration: line-through; color: #999;">
+                        <?= number_format($itemOriginalPrice) ?> VNĐ
+                    </p>
+                    <p class="discounted-price" style="color: #ff6600; font-weight: bold;">
+                        <?= number_format($itemDiscountedPrice) ?> VNĐ
+                    </p>
+                <?php else: ?>
+                    <p class="price" style="font-weight: bold;">
+                        <?= number_format($itemOriginalPrice) ?> VNĐ
+                    </p>
+                <?php endif; ?>
+            </a>
+        </div>
+    <?php endforeach; ?>
+</div>
+
 </div>
 
 <script>
@@ -118,9 +152,9 @@ function changeImage(el) {
 
 function applyVoucher() {
     let voucherCode = document.getElementById("voucherCode").value;
-    let price = <?php echo $discountedPrice; ?>;
+    let currentPrice = <?= $discountedPrice ?>;
     if (voucherCode === "SALE10") {
-        let newPrice = price * 0.9;
+        let newPrice = currentPrice * 0.9;
         document.getElementById("discountedPrice").textContent = newPrice.toLocaleString() + " VNĐ";
         alert("Giảm giá thành công!");
     } else {
