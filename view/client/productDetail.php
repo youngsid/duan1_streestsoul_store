@@ -48,7 +48,6 @@
     </head>
     <body>
 
-
     <div class="container product-detail-container">
         <div class="product-image">
             <img id="mainImage" src="/streestsoul_store1/public/images/<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
@@ -112,7 +111,6 @@
                 
     <div class="container related-products">
         <h3>Các sản phẩm khác</h3>
-
         <div class="product-list">
         <?php foreach ($otherProducts as $item): ?>
             <?php

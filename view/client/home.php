@@ -37,6 +37,9 @@ foreach ($allProducts as $product) {
                         <?php echo number_format($product['price']); ?> VNĐ
                     </p>
                 </a>
+                <div class="product-buttons">
+                    <button class="buy-now">Mua ngay</button>
+                </div>
             </div>
         <?php endforeach; ?>
     </div>
@@ -57,16 +60,17 @@ foreach ($allProducts as $product) {
                     <img src="/streestsoul_store1/public/images/<?php echo htmlspecialchars($product['image']); ?>" 
                         alt="<?php echo htmlspecialchars($product['name']); ?>">
                     <h3><?php echo htmlspecialchars($product['name']); ?></h3>
-                    <p class="original-price" style="text-decoration: line-through; color: #999;">
+                    <p class="original-price">
                         <?php echo number_format($originalPrice); ?> VNĐ
                     </p>
-                    <p class="discounted-price" style="color: #ff6600; font-weight: bold;">
+                    <p class="discounted-price">
                         <?php echo number_format($discountedPrice); ?> VNĐ
                     </p>
                 </a>
+                <div class="product-buttons">
+                    <button class="buy-now">Mua ngay</button>
+                </div>
             </div>
         <?php endforeach; ?>
     </div>
 </div>
-
-<?php include __DIR__ . "/../layout/footer.php"; ?>

@@ -6,7 +6,10 @@ ini_set('display_errors', 1);
 include_once __DIR__ . "/../../config/db.php";
 include_once __DIR__ . "/../layout/header.php";
 
-// Khởi tạo session giỏ hàng
+// Debug thử session
+// echo '<pre>'; print_r($_SESSION['cart']); echo '</pre>';
+
+// Khởi tạo session giỏ hàng nếu chưa có
 if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
@@ -41,18 +44,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_id']) && isset
         $total = 0;
         if (!empty($_SESSION['cart'])):
             foreach ($_SESSION['cart'] as $id => $product): 
-                $subtotal = $product['price'] * $product['quantity'];
+                $name = htmlspecialchars($product['name'] ?? 'Sản phẩm');
+                $price = $product['price'] ?? 0;
+                $quantity = $product['quantity'] ?? 1;
+                $image = !empty($product['image']) ? htmlspecialchars($product['image']) : 'default.jpg';
+
+                $subtotal = $price * $quantity;
                 $total += $subtotal;
         ?>
             <tr>
                 <td>
-                    <img src="/streestsoul_store1/public/images/<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" width="50">
-                    <?php echo htmlspecialchars($product['name']); ?>
+                    <img src="/streestsoul_store1/public/images/<?php echo $image; ?>" alt="<?php echo $name; ?>" width="50">
+                    <?php echo $name; ?>    
                 </td>
-                <td><?php echo number_format($product['price']); ?> VNĐ</td>
+                <td><?php echo number_format($price); ?> VNĐ</td>
                 <td>
                     <form method="POST">
-                        <input type="number" name="quantity" value="<?php echo $product['quantity']; ?>" min="1">
+                        <input type="number" name="quantity" value="<?php echo $quantity; ?>" min="1">
                         <input type="hidden" name="update_id" value="<?php echo $id; ?>">
                         <button type="submit">Cập nhật</button>
                     </form>

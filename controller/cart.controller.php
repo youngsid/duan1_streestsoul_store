@@ -6,34 +6,26 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add') {
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $price = floatval($_POST['price']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = $_POST['id'] ?? null;
+    $name = $_POST['name'] ?? '';
+    $price = $_POST['price'] ?? 0;
+    $image = $_POST['image'] ?? 'default.jpg'; // thêm ảnh nếu có hoặc dùng mặc định
 
-    if (isset($_SESSION['cart'][$id])) {
-        $_SESSION['cart'][$id]['quantity'] += 1;
+    if ($id) {
+        if (isset($_SESSION['cart'][$id])) {
+            $_SESSION['cart'][$id]['quantity'] += 1;
+        } else {
+            $_SESSION['cart'][$id] = [
+                'name' => $name,
+                'price' => $price,
+                'image' => $image,
+                'quantity' => 1
+            ];
+        }
+
+        echo json_encode(['success' => true, 'cartCount' => count($_SESSION['cart'])]);
     } else {
-        $_SESSION['cart'][$id] = [
-            'name' => $name,
-            'price' => $price,
-            'quantity' => 1
-        ];
+        echo json_encode(['success' => false, 'message' => 'ID sản phẩm không hợp lệ']);
     }
-
-    // Tính tổng số lượng sản phẩm trong giỏ
-    $totalItems = 0;
-    foreach ($_SESSION['cart'] as $item) {
-        $totalItems += $item['quantity'];
-    }
-
-    echo json_encode([
-        'success' => true,
-        'totalItems' => $totalItems
-    ]);
-    exit;
 }
-
-echo json_encode(['success' => false, 'error' => 'Yêu cầu không hợp lệ']);
-http_response_code(400);
-exit;
