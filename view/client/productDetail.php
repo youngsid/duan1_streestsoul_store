@@ -48,9 +48,6 @@ $otherProducts = $productModel->getRandomProducts(4, $product['id']);
 </head>
 <body>
 
-<div class="home-banner">
-    <img src="/streestsoul_store1/public/images/banner.jpg" alt="Banner Sản phẩm">
-</div>
 
 <div class="container product-detail-container">
     <div class="product-image">
@@ -112,9 +109,10 @@ $otherProducts = $productModel->getRandomProducts(4, $product['id']);
         </div>
     </div>
 </div>
-
+            
 <div class="container related-products">
     <h3>Các sản phẩm khác</h3>
+
     <div class="product-list">
     <?php foreach ($otherProducts as $item): ?>
         <?php

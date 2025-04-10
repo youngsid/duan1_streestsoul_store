@@ -22,10 +22,10 @@ $allCategories = $categoryModel->getAllCategories();
 ?>
 
 <!-- Banner -->
-<div style="width: 100%; margin: 0 auto 30px; padding: 0;">
+<!-- <div style="width: 100%; margin: 0 auto 30px; padding: 0;">
     <img src="/streestsoul_store1/public/images/banner.jpg" alt="Banner Sản phẩm" 
          style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 10px;">
-</div>
+</div> -->
 
 <div class="container" style="display: flex; gap: 30px; flex-wrap: wrap; padding: 20px;">
     <!-- Sidebar -->
