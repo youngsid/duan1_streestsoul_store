@@ -44,11 +44,13 @@ foreach ($allProducts as $product) {
 
 <!-- Sản phẩm giảm giá -->
 <div class="container">
-    <h2>Sản phẩm giá ưu đãi</h2>
+    <div class="section-banner">
+        <img src="/streestsoul_store1/public/images/banner-sale.jpg" alt="Banner giảm giá">
+    </div>
     <div class="product-list">
         <?php foreach (array_slice($hotSaleProducts, 0, 8) as $product): 
             $originalPrice = $product['price'];
-            $discountedPrice = $originalPrice * 0.9;
+            $discountedPrice = $originalPrice * 0.7;
         ?>
             <div class="product">
                 <a href="/streestsoul_store1/view/client/productDetail.php?id=<?php echo $product['id']; ?>">

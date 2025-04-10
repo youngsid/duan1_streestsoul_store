@@ -28,7 +28,7 @@
     $isHotSale = !empty($product['is_hot_sale']);
 
     if ($isHotSale) {
-        $discountRate = 0.10;
+        $discountRate = 0.30;
         $discountedPrice = $originalPrice * (1 - $discountRate);
     } else {
         $discountedPrice = $originalPrice;
@@ -118,7 +118,7 @@
             <?php
                 $isItemHotSale = !empty($item['is_hot_sale']);
                 $itemOriginalPrice = $item['price'];
-                $itemDiscountedPrice = $isItemHotSale ? $itemOriginalPrice * 0.9 : $itemOriginalPrice;
+                $itemDiscountedPrice = $isItemHotSale ? $itemOriginalPrice * 0.7 : $itemOriginalPrice;
             ?>
             <div class="product">
                 <a href="productDetail.php?id=<?= $item['id'] ?>">
@@ -151,8 +151,8 @@
     function applyVoucher() {
         let voucherCode = document.getElementById("voucherCode").value;
         let currentPrice = <?= $discountedPrice ?>;
-        if (voucherCode === "SALE10") {
-            let newPrice = currentPrice * 0.9;
+        if (voucherCode === "SALE30") {
+            let newPrice = currentPrice * 0.7;
             document.getElementById("discountedPrice").textContent = newPrice.toLocaleString() + " VNĐ";
             alert("Giảm giá thành công!");
         } else {

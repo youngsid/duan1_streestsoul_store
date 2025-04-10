@@ -52,11 +52,10 @@ $allCategories = $categoryModel->getAllCategories();
         <h2>
             <?php echo $categoryName ? "Sản phẩm thuộc danh mục: <em>$categoryName</em>" : "Tất cả sản phẩm"; ?>
         </h2>
-
-        <div class="product-list" style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <div class="product-list">
             <?php if (!empty($allProducts)): ?>
                 <?php foreach ($allProducts as $product): ?>
-                    <div class="product" style="flex: 0 0 23%; background: #fff; border: 1px solid #eee; border-radius: 10px; padding: 10px; text-align: center;">
+                    <div class="product">
                         <a href="productDetail.php?id=<?php echo $product['id']; ?>" style="text-decoration: none; color: inherit;">
                             <img src="/streestsoul_store1/public/images/<?php echo $product['image']; ?>" alt="" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
                             <h3 style="font-size: 16px; margin: 10px 0;"><?php echo htmlspecialchars($product['name']); ?></h3>
@@ -70,5 +69,4 @@ $allCategories = $categoryModel->getAllCategories();
         </div>
     </section>
 </div>
-
 <?php include_once __DIR__ . "/../layout/footer.php"; ?>

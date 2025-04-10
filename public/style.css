@@ -132,6 +132,23 @@ header h1 {
     border-radius: 10px;
 }
 
+/* === 5.1 BANNER NHỎ ƯU ĐÃI === */
+.section-banner {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.section-banner img {
+    width: 100%;
+    max-width: 400px; /* Giảm kích thước tối đa xuống */
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+
 /* === 6. DANH SÁCH SẢN PHẨM === */
 .product-list {
     display: flex;
@@ -333,15 +350,76 @@ footer {
 }
 
 /* === 12. RESPONSIVE === */
-@media (max-width: 768px) {
-    .product-detail-container {
-        flex-direction: column;
+/* === 12. RESPONSIVE === */
+
+/* ==== Tablet: max-width 1024px ==== */
+@media (max-width: 1024px) {
+    .nav-container {
+        flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
+        justify-content: space-between;
+        gap: 10px;
     }
 
-    .product-image,
-    .product-info {
-        width: 100%;
-        flex: 1 1 100%;
+    .nav-left,
+    .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .nav-left {
+        justify-content: flex-start;
+    }
+
+    .nav-right {
+        justify-content: flex-end;
+    }
+
+    .nav-right a,
+    .login-btn {
+        font-size: 14px;
+        padding: 6px 10px;
+        white-space: nowrap;
     }
 }
+
+/* ==== Mobile: max-width 767px ==== */
+@media (max-width: 767px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .nav-left,
+    .nav-right {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .cart-icon,
+    .login-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1 1 auto;
+    }
+
+    .login-btn {
+        padding: 8px 14px;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .cart-icon span {
+        font-size: 14px;
+    }
+}
+
