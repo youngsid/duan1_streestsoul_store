@@ -185,7 +185,7 @@ header h1 {
 /* === 7. TRANG CHI TIẾT SẢN PHẨM === */
 .product-detail-container {
     display: flex;
-    gap: 30px;
+    gap: 0px;
     padding: 30px 20px;
     justify-content: center;
     align-items: flex-start;
@@ -201,7 +201,7 @@ header h1 {
     align-items: center;
     gap: 1rem;
     width: 100%;
-    flex: 1 1 55%;
+    flex: 00 0 40%;
 }
 
 .product-image img#mainImage {
@@ -214,7 +214,7 @@ header h1 {
 
 /* Thông tin sản phẩm */
 .product-info {
-    flex: 1 1 40%;
+    flex: 0 0 60%;
     display: flex;
     flex-direction: column;
     gap: 15px;

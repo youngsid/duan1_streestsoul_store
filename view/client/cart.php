@@ -6,18 +6,18 @@ ini_set('display_errors', 1);
 include_once __DIR__ . "/../../config/db.php";
 include_once __DIR__ . "/../layout/header.php";
 
-// Đảm bảo giỏ hàng luôn là một mảng
+// Khởi tạo session giỏ hàng
 if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
 // Xử lý xóa sản phẩm
-if (isset($_POST['remove_id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_id'])) {
     unset($_SESSION['cart'][$_POST['remove_id']]);
 }
 
 // Xử lý cập nhật số lượng
-if (isset($_POST['update_id']) && isset($_POST['quantity'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_id']) && isset($_POST['quantity'])) {
     $updateId = $_POST['update_id'];
     $newQuantity = (int) $_POST['quantity'];
     if ($newQuantity > 0) {
@@ -45,13 +45,16 @@ if (isset($_POST['update_id']) && isset($_POST['quantity'])) {
                 $total += $subtotal;
         ?>
             <tr>
-                <td><?php echo htmlspecialchars($product['name']); ?></td>
+                <td>
+                    <img src="/streestsoul_store1/public/images/<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" width="50">
+                    <?php echo htmlspecialchars($product['name']); ?>
+                </td>
                 <td><?php echo number_format($product['price']); ?> VNĐ</td>
                 <td>
                     <form method="POST">
                         <input type="number" name="quantity" value="<?php echo $product['quantity']; ?>" min="1">
                         <input type="hidden" name="update_id" value="<?php echo $id; ?>">
-                        <button type="submit" name="update">Cập nhật</button>
+                        <button type="submit">Cập nhật</button>
                     </form>
                 </td>
                 <td><?php echo number_format($subtotal); ?> VNĐ</td>

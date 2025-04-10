@@ -21,15 +21,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         ];
     }
 
+    // Tính tổng số lượng sản phẩm trong giỏ
     $totalItems = 0;
     foreach ($_SESSION['cart'] as $item) {
         $totalItems += $item['quantity'];
     }
 
-    echo json_encode($totalItems);
+    echo json_encode([
+        'success' => true,
+        'totalItems' => $totalItems
+    ]);
     exit;
 }
 
-echo json_encode(['error' => 'Yêu cầu không hợp lệ']);
+echo json_encode(['success' => false, 'error' => 'Yêu cầu không hợp lệ']);
 http_response_code(400);
 exit;

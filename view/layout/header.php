@@ -25,8 +25,10 @@ if (isset($_SESSION['cart'])) {
                 <a href="/streestsoul_store1/orderUser.php">Đơn hàng</a>
             </div>
             <div class="nav-right">
-                <a href="/streestsoul_store1/view/client/cart.php" class="cart-icon" title="Giỏ hàng">
-                    🛒 <span id="cartCount"><?php echo $totalCartItems; ?></span>
+                <a href="/streestsoul_store1/view/client/cart.php" class="cart-icon">
+                    🛒 <span id="cart-count">
+                        <?php echo isset($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'], 'quantity')) : 0; ?>
+                    </span>
                 </a>
                 <a href="/streestsoul_store1/login.php" class="login-btn">Đăng nhập</a>
             </div>
