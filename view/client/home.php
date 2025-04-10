@@ -27,7 +27,7 @@ foreach ($allProducts as $product) {
 <div class="container">
     <h2>Sản phẩm nổi bật</h2>
     <div class="product-list">
-        <?php foreach (array_slice($featuredProducts, 0, 4) as $product): ?>
+        <?php foreach (array_slice($featuredProducts, 0, 8) as $product): ?>
             <div class="product">
                 <a href="/streestsoul_store1/view/client/productDetail.php?id=<?php echo $product['id']; ?>">
                     <img src="/streestsoul_store1/public/images/<?php echo htmlspecialchars($product['image']); ?>" 
@@ -46,7 +46,7 @@ foreach ($allProducts as $product) {
 <div class="container">
     <h2>Sản phẩm giá ưu đãi</h2>
     <div class="product-list">
-        <?php foreach (array_slice($hotSaleProducts, 0, 4) as $product): 
+        <?php foreach (array_slice($hotSaleProducts, 0, 8) as $product): 
             $originalPrice = $product['price'];
             $discountedPrice = $originalPrice * 0.9;
         ?>
