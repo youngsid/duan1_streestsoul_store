@@ -16,12 +16,14 @@ foreach ($allProducts as $product) {
     }
 }
 ?>
+
 <!-- banenr -->
 <div class="banner">
-    <img src="public/images/banner.jpg" alt="StreetSoul Banner" class="logo">
+    <img src="public/images/banner-trangchu.jpg" alt="StreetSoul Banner" class="logo">
     <h2>StreetSoul Collection</h2>
 </div>
 
+<!-- Sản phẩm nổi bật -->
 <div class="container">
     <h2>Sản phẩm nổi bật</h2>
     <div class="product-list">
@@ -40,6 +42,7 @@ foreach ($allProducts as $product) {
     </div>
 </div>
 
+<!-- Sản phẩm giảm giá -->
 <div class="container">
     <h2>Sản phẩm giá ưu đãi</h2>
     <div class="product-list">
