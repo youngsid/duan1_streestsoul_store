@@ -4,12 +4,14 @@
     margin: 0;
     padding: 0;
 }
+
 body {
     background-color: #fff;
     color: #000;
     font-family: Arial, sans-serif;
     line-height: 1.6;
 }
+
 a {
     text-decoration: none;
     color: inherit;
@@ -29,7 +31,7 @@ header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.logo-img{
+.logo-img {
     height: 50px;
     width: auto;
     object-fit: contain;
@@ -39,9 +41,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* padding: 0 20px; */
     flex-wrap: wrap;
 }
+
 .nav-left a,
 .nav-right a {
     font-size: 16px;
@@ -49,14 +51,17 @@ header {
     margin-right: 20px;
     color: #333;
 }
+
 .nav-left a:hover {
     color: #be7500;
 }
+
 .nav-right {
     display: flex;
     align-items: center;
     gap: 15px;
 }
+
 .nav-right a:hover {
     color: #ffcc00;
 }
@@ -66,6 +71,7 @@ header {
     position: relative;
     font-size: 18px;
 }
+
 .cart-icon span {
     color: red;
     font-weight: bold;
@@ -81,6 +87,7 @@ header {
     font-size: 14px;
     transition: background-color 0.3s ease;
 }
+
 .login-btn:hover {
     background-color: #e55d00;
 }
@@ -92,11 +99,13 @@ header {
     height: 500px;
     overflow: hidden;
 }
+
 .banner img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .banner h2 {
     position: absolute;
     top: 50%;
@@ -116,6 +125,7 @@ header {
     justify-content: center;
     margin: 20px 0;
 }
+
 .section-banner img {
     width: 100%;
     max-width: 400px;
@@ -131,6 +141,7 @@ header {
     justify-content: center;
     gap: 20px;
 }
+
 .product {
     width: 250px;
     background: #fff;
@@ -140,21 +151,26 @@ header {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
 }
+
 .product:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
+
 .product img {
     width: 100%;
     border-radius: 8px;
 }
+
 .product h3 {
     font-size: 18px;
     margin: 8px 0;
 }
+
 .product h3:hover {
     text-decoration: underline;
 }
+
 .price {
     font-weight: bold;
     color: #7f7d7d;
@@ -166,6 +182,7 @@ header {
     justify-content: center;
     margin-top: 12px;
 }
+
 .product-buttons .buy-now {
     background: #d04a00;
     color: white;
@@ -176,6 +193,7 @@ header {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
 .product-buttons .buy-now:hover {
     background: #b84000;
     transform: scale(1.05);
@@ -190,21 +208,25 @@ header {
     padding: 30px 20px;
     justify-content: center;
 }
+
 .product-image {
     flex: 1;
     min-width: 300px;
 }
+
 .product-image img#mainImage {
     width: 100%;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
 .thumbnail-container {
     display: flex;
     gap: 10px;
     margin-top: 10px;
     justify-content: center;
 }
+
 .thumbnail-container img.thumbnail {
     width: 80px;
     height: 80px;
@@ -214,6 +236,7 @@ header {
     cursor: pointer;
     transition: transform 0.2s ease;
 }
+
 .thumbnail-container img.thumbnail:hover {
     transform: scale(1.05);
     border-color: #ff6600;
@@ -226,18 +249,22 @@ header {
     flex-direction: column;
     gap: 15px;
 }
+
 .product-info h2 {
     font-size: 26px;
 }
+
 .original-price {
     text-decoration: line-through;
     color: #999;
 }
+
 .discounted-price {
     font-size: 22px;
     font-weight: bold;
     color: #ff6600;
 }
+
 .description {
     font-size: 16px;
     color: #555;
@@ -250,15 +277,18 @@ header {
     border-collapse: collapse;
     font-size: 14px;
 }
+
 .shipping-table th,
 .shipping-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
+
 .shipping-table th {
     background-color: #f5f5f5;
 }
+
 .out-of-stock {
     color: red;
 }
@@ -270,6 +300,7 @@ header {
     gap: 15px;
     margin-top: 20px;
 }
+
 .buttons form button,
 .buy-now {
     background: #ff6600;
@@ -281,17 +312,245 @@ header {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
 .buttons form button:hover,
 .buy-now:hover {
     background: #e55d00;
     transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
+
 .buy-now {
     background-color: #d04a00;
 }
+
 .buy-now:hover {
     background-color: #b84000;
+}
+
+/* === GIỎ HÀNG / Cart.php === */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.cart-table th, .cart-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-table th {
+    background-color: #f8f8f8;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.cart-table td {
+    font-size: 16px;
+    color: #555;
+}
+
+.product-name img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.product-quantity input {
+    width: 60px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.product-quantity button {
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.product-quantity button:hover {
+    background-color: #e67e22;
+}
+
+.product-remove button {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.product-remove button:hover {
+    background-color: #c0392b;
+}
+
+.total {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 20px;
+}
+
+.checkout-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.checkout-button input {
+    background-color: #27ae60;
+    color: #fff;
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-button input:hover {
+    background-color: #2ecc71;
+}
+
+/* ===  TRANG ĐẶT HÀNG / order.php === */
+.order-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-container h2 {
+    font-size: 28px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* Form container */
+.order-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form labels */
+.order-container label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+/* Input fields */
+.order-container input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+/* Tổng tiền */
+.order-container p {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Nút Đặt hàng */
+.order-container button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.order-container button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+/* === Trang orderUser/php / Trang trạng thái đơn hàng === */
+.order-history {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.order-history h2 {
+    margin-bottom: 25px;
+    font-size: 24px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+.order-box {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #fafafa;
+}
+
+.order-box p {
+    margin: 5px 0;
+}
+
+.status-label {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.order-products {
+    margin-top: 15px;
+}
+
+.order-products table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-products th, .order-products td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.order-products img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
 }
 
 /* === 8. FOOTER === */
@@ -319,7 +578,7 @@ footer {
 @media (max-width: 767px) {
     .nav-container {
         flex-direction: column;
-        gap: 10px;
+        gap: 10px;  
         align-items: stretch;
     }
     .nav-left,
