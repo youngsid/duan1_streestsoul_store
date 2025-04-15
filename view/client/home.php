@@ -19,7 +19,7 @@ foreach ($allProducts as $product) {
 
 <!-- banenr -->
 <div class="banner">
-    <img src="public/images/banner-trangchu.jpg" alt="StreetSoul Banner" class="logo">
+    <img src="public/images/Phong-cach-Streetwear.png.jpg" alt="StreetSoul Banner" class="logo">
     <h2>StreetSoul Collection</h2>
 </div>
 

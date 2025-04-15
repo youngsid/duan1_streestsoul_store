@@ -81,7 +81,7 @@ if (isset($_SESSION['cart'])) {
                         <span class="user-name">Xin chào, <?= htmlspecialchars($_SESSION['user']['hoten']) ?></span>
                         <div class="user-dropdown">
                             <?php if ($_SESSION['user']['vaitro'] === 1): ?>
-                                <a href="/streestsoul_store1/view/admin/dashboard.php">Quản trị </a>
+                                <a href="/streestsoul_store1/view/admin/dashboard.php">Quản trị</a>
                             <?php endif; ?>
                             <a href="/streestsoul_store1/view/client/logout.php">Đăng xuất</a>
                         </div>
