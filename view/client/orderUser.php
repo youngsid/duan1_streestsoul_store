@@ -36,14 +36,6 @@ $result = $conn->query($query);
                 <!-- Chi tiết sản phẩm của đơn -->
                 <div class="order-products">
                     <table>
-                        <thead>
-                            <tr>
-                                <th>Ảnh</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Số lượng</th>
-                                <th>Giá</th>
-                            </tr>
-                        </thead>
                         <tbody>
                         <?php
                             $order_id = $order['id'];

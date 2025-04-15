@@ -46,4 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   </div>
   <button type="submit" class="btn btn-primary">Đăng nhập</button>
   <a href="/streestsoul_store1/index.php" class="btn btn-secondary ms-2">Về trang chủ</a>
+
+  <!-- Thêm thông báo và nút đăng ký -->
+  <div class="mt-3 text-center">
+    <p>Bạn chưa có tài khoản? <a href="/streestsoul_store1/view/client/register.php">Đăng ký ngay</a></p>
+  </div>
 </form>

@@ -24,6 +24,10 @@ a {
     padding: 20px;
 }
 
+.container h2 {
+    color: rgb(0, 0, 0);
+}
+
 /* === 3. HEADER & NAVIGATION === */
 header {
     background-color: #e8e8e8;
