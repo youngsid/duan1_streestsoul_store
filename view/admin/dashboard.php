@@ -12,7 +12,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['vaitro'] !== 1) {
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="/streestsoul_store1/public/style.css">
+    <link rel="stylesheet" href="/streestsoul_store1/public/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }

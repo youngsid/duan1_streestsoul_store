@@ -5,11 +5,19 @@
     padding: 0;
 }
 
-body {
-    background-color: #fff;
-    color: #000;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+/* Đảm bảo body kéo dài và footer luôn ở đáy */
+html, body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.footer {
+    margin-top: auto;
 }
 
 a {
@@ -28,73 +36,56 @@ a {
     color: rgb(0, 0, 0);
 }
 
-/* === 3. HEADER & NAVIGATION === */
+/* === 3 HEADER & NAVIGATION === */
 header {
     background-color: #e8e8e8;
-    padding: 12px 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 1px 0; /* Giảm padding xuống mức tối thiểu */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
-.logo-img {
-    height: 50px;
-    width: auto;
-    object-fit: contain;
+body {
+    padding-top: 80px; /* Đẩy nội dung xuống để tránh bị che */
 }
 
 .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    padding: 0 5px; /* Giảm khoảng cách hai bên */
+    height: 35px; /* Giảm chiều cao header */
+}
+
+.logo-img {
+    height: 25px; /* Thu nhỏ logo */
 }
 
 .nav-left a,
 .nav-right a {
-    font-size: 16px;
+    font-size: 20px; /* Giảm kích thước chữ hơn nữa */
     font-weight: bold;
-    margin-right: 20px;
-    color: #333;
+    padding: 3px 6px; /* Giảm padding */
 }
 
-.nav-left a:hover {
-    color: #be7500;
-}
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.nav-right a:hover {
-    color: #ffcc00;
-}
-
-/* Cart Icon */
 .cart-icon {
-    position: relative;
-    font-size: 18px;
+    font-size: 14px; /* Thu nhỏ icon */
 }
 
-.cart-icon span {
-    color: red;
-    font-weight: bold;
-    margin-left: 4px;
+#cart-count {
+    top: -2px;
+    right: -7px;
+    font-size: 9px; /* Giảm kích thước số giỏ hàng */
 }
 
-/* Login Button */
-.login-btn {
-    background-color: #ff6600;
-    color: #fff;
-    padding: 6px 14px;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+.user-menu {
+    font-size: 14px; /* Giảm kích thước icon người dùng */
 }
 
-.login-btn:hover {
-    background-color: #e55d00;
-}
+
 
 /* === 4. BANNER === */
 .banner {
@@ -188,41 +179,129 @@ header {
 }
 
 .product-buttons .buy-now {
-    background: #d04a00;
-    color: white;
+    background: white;
+    color: black;
     padding: 10px 18px;
     font-size: 16px;
-    border: none;
+    border: 2px solid black; /* Thêm viền đen */
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .product-buttons .buy-now:hover {
-    background: #b84000;
+    background: #f8f8f8; /* Nhẹ nhàng thay đổi màu nền khi hover */
     transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* === 6. TRANG CHI TIẾT SẢN PHẨM === */
+/* Căn chỉnh ô nhập mã giảm giá và nút theo cùng kích thước */
+.voucher-section {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa input và button */
+}
+
+/* Ô nhập mã giảm giá */
+.voucher-input {
+    flex: 1; /* Giúp ô nhập mã mở rộng theo kích thước container */
+    padding: 10px;
+    border: 2px solid #ff6600;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center; /* Căn giữa văn bản */
+}
+
+/* Nút bấm */
+.custom-btn {
+    flex: 1; /* Đảm bảo nút có kích thước tương đương ô nhập */
+    background-color: #ff6600;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.custom-btn:hover {
+    background-color: #ffffff;
+    color: #be7500;
+}
+
+
+
 .product-detail-container {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     padding: 30px 20px;
     justify-content: center;
+    align-items: center;
 }
 
 .product-image {
     flex: 1;
     min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .product-image img#mainImage {
-    width: 100%;
+    width: 65%; /* Giữ kích thước hợp lý */
+    max-height: 450px; /* Kéo dài hình xuống để khớp với nút */
+    object-fit: contain; /* Đảm bảo ảnh không bị méo */
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
 }
+
+.thumbnail-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.thumbnail {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1);
+    border-color: #007bff;
+}
+
+
+.thumbnail-container {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.thumbnail {
+    width: 70px; /* Giảm kích thước thumbnail */
+    height: 70px;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1);
+    border-color: #007bff;
+}
+
 
 .thumbnail-container {
     display: flex;
@@ -417,7 +496,7 @@ header {
 }
 
 .checkout-button input {
-    background-color: #27ae60;
+    background-color: #be7500;
     color: #fff;
     padding: 12px 30px;
     font-size: 18px;
@@ -428,7 +507,8 @@ header {
 }
 
 .checkout-button input:hover {
-    background-color: #2ecc71;
+    background-color: white;
+    color: #be7500;
 }
 
 /* ===  TRANG ĐẶT HÀNG / order.php === */
@@ -483,22 +563,25 @@ header {
     text-align: center;
 }
 
-/* Nút Đặt hàng */
-.order-container button[type="submit"] {
-    background-color: #007bff;
+.btn-primary {
+    background-color: #28a745; /* Màu xanh lá */
     color: white;
-    padding: 12px 20px;
     font-size: 18px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%;
+    transition: background 0.3s ease;
 }
 
-.order-container button[type="submit"]:hover {
-    background-color: #0056b3;
+.btn-primary:hover {
+    background-color: #218838; /* Màu tối hơn khi di chuột */
 }
+
+.btn-primary:active {
+    background-color: #1e7e34; /* Màu khi nhấn */
+}
+
 
 
 /* === Trang orderUser/php / Trang trạng thái đơn hàng === */

@@ -6,26 +6,43 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['id'] ?? null;
-    $name = $_POST['name'] ?? '';
-    $price = $_POST['price'] ?? 0;
-    $image = $_POST['image'] ?? 'default.jpg'; // thêm ảnh nếu có hoặc dùng mặc định
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    $action = $_POST['action'];
+    
+    if ($action === 'add') {
+        $id = $_POST['id'] ?? null;
+        $name = $_POST['name'] ?? '';
+        $price = $_POST['price'] ?? 0;
+        $image = !empty($_POST['image']) ? $_POST['image'] : 'default.jpg'; // Kiểm tra hình ảnh hợp lệ
 
-    if ($id) {
-        if (isset($_SESSION['cart'][$id])) {
-            $_SESSION['cart'][$id]['quantity'] += 1;
+        if (!empty($id) && !empty($name)) {
+            if (isset($_SESSION['cart'][$id])) {
+                $_SESSION['cart'][$id]['quantity'] += 1;
+            } else {
+                $_SESSION['cart'][$id] = [
+                    'id' => $id,
+                    'name' => $name,
+                    'price' => $price,
+                    'image' => $image,
+                    'quantity' => 1
+                ];
+            }
+
+            echo json_encode([
+                'success' => true,
+                'cartCount' => count($_SESSION['cart']),
+                'cartItems' => $_SESSION['cart']
+            ]);
         } else {
-            $_SESSION['cart'][$id] = [
-                'name' => $name,
-                'price' => $price,
-                'image' => $image,
-                'quantity' => 1
-            ];
+            echo json_encode([
+                'success' => false,
+                'message' => 'Dữ liệu sản phẩm không hợp lệ!'
+            ]);
         }
-
-        echo json_encode(['success' => true, 'cartCount' => count($_SESSION['cart'])]);
     } else {
-        echo json_encode(['success' => false, 'message' => 'ID sản phẩm không hợp lệ']);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Hành động không hợp lệ!'
+        ]);
     }
 }

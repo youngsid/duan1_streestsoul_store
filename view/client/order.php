@@ -130,7 +130,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
             <p><strong>Tổng tiền: <?php echo number_format($grandTotal); ?> VNĐ</strong></p>
         </div>
 
-        <button type="submit" name="place_order" class="btn btn-primary">Đặt hàng</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='order-success.php';">
+    Đặt hàng
+</button>
+
     </form>
 </div>
 

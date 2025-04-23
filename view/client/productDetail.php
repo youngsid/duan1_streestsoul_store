@@ -92,18 +92,18 @@ $otherProducts = $productModel->getRandomProducts(4, $product['id']);
             </p>
         </div>
 
-        <div class="voucher-section">
-            <input type="text" id="voucherCode" placeholder="Nhập mã giảm giá">
-            <button onclick="applyVoucher()">Áp dụng</button>
-        </div>
+      <div class="voucher-section">
+    <input type="text" id="voucherCode" class="voucher-input" placeholder="Nhập mã giảm giá">
+    <button class="custom-btn" onclick="applyVoucher()">Áp dụng</button>
+</div>
 
-        <div class="buttons">
-            <button id="addToCartBtn"
-                    data-id="<?= $product['id'] ?>"
-                    data-name="<?= htmlspecialchars($product['name']) ?>"
-                    data-price="<?= $discountedPrice ?>">
-                Thêm vào giỏ hàng
-            </button>
+<div class="buttons"> 
+    <button class="custom-btn" id="addToCartBtn" 
+        data-id="<?= $product['id'] ?>" 
+        data-name="<?= htmlspecialchars($product['name']) ?>" 
+        data-price="<?= $discountedPrice ?>">
+         Thêm vào giỏ hàng 
+    </button>
 
             <form id="buyNowForm" action="order.php" method="POST">
                 <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
