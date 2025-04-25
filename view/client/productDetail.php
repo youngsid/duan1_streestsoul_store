@@ -101,13 +101,16 @@ $otherProducts = $productModel->getRandomProducts(4, $product['id']);
     <button class="custom-btn" id="addToCartBtn" 
         data-id="<?= $product['id'] ?>" 
         data-name="<?= htmlspecialchars($product['name']) ?>" 
-        data-price="<?= $discountedPrice ?>">
+        data-price="<?= $discountedPrice ?>"
+        data-image="<?= htmlspecialchars($product['image']) ?>">
+        
          Thêm vào giỏ hàng 
     </button>
 
             <form id="buyNowForm" action="order.php" method="POST">
                 <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
                 <input type="hidden" name="quantity" value="1">
+                <input type="hidden" name="image" value="<?php echo htmlspecialchars($product['image']); ?>">
                 <button type="submit" class="buy-now-btn">Mua ngay</button>
             </form>
 
@@ -168,12 +171,16 @@ $('#addToCartBtn').on('click', function () {
     const id = $(this).data('id');
     const name = $(this).data('name');
     const price = $(this).data('price');
+    const image = $(this).data('image') || 'default.jpg'; // Kiểm tra hình ảnh hợp lệ
 
     $.post('/streestsoul_store1/controller/cart.controller.php', {
         action: 'add',
         id,
         name,
-        price
+        price,
+        image
+        
+
     }, function (res) {
         if (res.success) {
             $('#cart-count').text(res.totalItems);

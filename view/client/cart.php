@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
             <tr>
                 <td class="product-name">
                     <!-- Đảm bảo đường dẫn ảnh là chính xác và đầy đủ -->
-                    <img src="/streestsoul_store1/public/images/<?php echo htmlspecialchars($image); ?>" width="50" alt="<?php echo htmlspecialchars($name); ?>"> 
+                    <img src="/streestsoul_store1/public/images/<?php echo urlencode($image); ?>" width="50" alt="<?php echo htmlspecialchars($name); ?>"> 
                     <?php echo htmlspecialchars($name); ?>
                 </td>
                 <td class="product-price"><?php echo number_format($price); ?> VNĐ</td>

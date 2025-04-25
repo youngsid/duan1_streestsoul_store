@@ -1,6 +1,6 @@
 <?php
 // ======= FILE: home.php =======
-
+// ob_start();
 include_once __DIR__ . "/../../config/db.php";
 include_once __DIR__ . "/../../model/product.model.php";
 include_once __DIR__ . "/../layout/header.php";
@@ -55,14 +55,16 @@ foreach ($allProducts as $product) {
                     </p>
                 </a>
                 <div class="product-buttons">
-                    <form action="/streestsoul_store1/view/client/order.php" method="GET">
+                    <form action="/streestsoul_store1/view/client/buy-now.php" method="POST">
                         <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
                         <input type="hidden" name="name" value="<?php echo htmlspecialchars($product['name']); ?>">
                         <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
                         <input type="hidden" name="image" value="<?php echo htmlspecialchars($product['image']); ?>">
-                        <button type="submit" class="buy-now">Mua ngay</button>
+                        <button type="submit" name="mua_ngay" class="buy-now" >Mua ngay</button>
+
                     </form>
                 </div>
+
             </div>
         <?php endforeach; ?>
     </div>
@@ -98,4 +100,4 @@ foreach ($allProducts as $product) {
     </div>
 </div>
 
-<?php include __DIR__ . "/../layout/footer.php"; ?>
+<?php include __DIR__ . "/../layout/footer.php";  ?>

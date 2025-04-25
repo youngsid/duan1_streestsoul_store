@@ -38,7 +38,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['vaitro'] !== 1) {
         <h3>Quản trị</h3>
         <a href="/streestsoul_store1/index.php"><i class="fa fa-home"></i> Trang chủ</a>
         <a href="/streestsoul_store1/view/admin/orders.php"><i class="fa fa-shopping-cart"></i> Quản lý đơn hàng</a>
-        <a href="/streestsoul_store1/view/admin/users.php"><i class="fa fa-user"></i> Quản lý người dùng</a>
+        <a href="/streestsoul_store1/view/admin/users/users.php"><i class="fa fa-user"></i> Quản lý người dùng</a>
         <a href="/streestsoul_store1/view/admin/products.php"><i class="fa fa-box"></i> Quản lý sản phẩm</a>
         <a href="/streestsoul_store1/view/client/logout.php"><i class="fa fa-sign-out"></i> Đăng xuất</a>
     </div>
